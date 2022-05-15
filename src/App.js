@@ -14,6 +14,10 @@ export default class App extends Component {
     }
   }
 
+  handleChange = e => { 
+    this.setState({searchField: e.target.value})
+  }
+
   componentDidMount () {
     fetch('https://jsonplaceholder.typicode.com/users/')
   .then(response => response.json())
@@ -25,7 +29,8 @@ export default class App extends Component {
     const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()))
     return (
       <div className='App'>
-        <SearchBox onChange={e => this.setState({searchField: e.target.value})} placeholder='search monsters' />
+        <h1>Monster Rollodex</h1>
+        <SearchBox onChange={this.handleChange} placeholder='search monsters' />
 
        <Cardlist monsters={filteredMonsters}>
           
